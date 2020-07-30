@@ -4,7 +4,7 @@ public class TestWeb {
 
     @Test
     public void login(){
-
+        System.out.println("this is a test");
     }
 }
 
