@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+<log4j:configuration>
+    <!--输出到控制台-->
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <!-- 日志输出格式 -->
+        <layout class="org.apache.log4j.PatternLayout">
+             <param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH:mm:ss SSS}][%c]-[%m]%n"/>
+        </layout>
+
+        <!--过滤器设置输出的级别-->
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <!-- 设置日志输出的最小级别 -->
+            <param name="levelMin" value="INFO"/>
+            <!-- 设置日志输出的最大级别 -->
+            <param name="levelMax" value="ERROR"/>
+        </filter>
+    </appender>
+
+    <appender name="DailyRollingFileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+        <!-- 设置日志信息输出文件全路径名 -->
+        <param name="File" value="./logs/info.log" />
+        <!-- 设置日志每分钟回滚一次，即产生一个新的日志文件 -->
+        <param name="DatePattern" value="'.'yyyy-MM-dd-HH-mm'.log'" />
+        <!-- 设置日志输出的样式 -->
+        <layout class="org.apache.log4j.PatternLayout">
+            <!-- 设置日志输出的格式 -->
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%-5p] [method:%l]%n%m%n%n" />
+        </layout>
+    </appender>
+
+    <!--输出到文件（info）-->
+    <!--将生成“info.log.2014-06-11”这样的日志文件-->
+<!--    <appender name="fileAppenderInfo" class="org.apache.log4j.DailyRollingFileAppender">-->
+<!--        <param name="File" value="./logs/info.log" />-->
+<!--        <param name="DatePattern" value=".yyyy-MM-dd" />-->
+<!--        <layout class="org.apache.log4j.PatternLayout">-->
+<!--            <param name="ConversionPattern" value="[%d{HH:mm:ss:SSS}] [%p] - %l - %m%n"/>-->
+<!--        </layout>-->
+<!--        <filter class="org.apache.log4j.varia.LevelRangeFilter">-->
+<!--            <param name="LevelMin" value="INFO" />-->
+<!--            <param name="LevelMax" value="INFO" />-->
+<!--        </filter>-->
+<!--    </appender>-->
+
+<!--    &lt;!&ndash; 输出日志到文件 &ndash;&gt;-->
+<!--    <appender name="fileAppender" class="org.apache.log4j.FileAppender">-->
+<!--        &lt;!&ndash; 输出文件全路径名&ndash;&gt;-->
+<!--        <param name="File" value="/data/applogs/own/fileAppender.log"/>-->
+<!--        &lt;!&ndash;是否在已存在的文件追加写：默认时true，若为false则每次启动都会删除并重新新建文件&ndash;&gt;-->
+<!--        <param name="Append" value="false"/>-->
+<!--        <param name="Threshold" value="INFO"/>-->
+<!--        &lt;!&ndash;是否启用缓存，默认false&ndash;&gt;-->
+<!--        <param name="BufferedIO" value="false"/>-->
+<!--        &lt;!&ndash;缓存大小，依赖上一个参数(bufferedIO), 默认缓存大小8K  &ndash;&gt;-->
+<!--        <param name="BufferSize" value="512"/>-->
+<!--        &lt;!&ndash; 日志输出格式 &ndash;&gt;-->
+<!--        <layout class="org.apache.log4j.PatternLayout">-->
+<!--            <param name="ConversionPattern" value="[%p][%d{yyyy-MM-dd HH:mm:ss SSS}][%c]-[%m]%n"/>-->
+<!--        </layout>-->
+<!--    </appender>-->
+
+    <root>
+        <level value="ALL"/>
+        <appender-ref ref="console" />
+<!--        <appender-ref ref="fileAppender" />-->
+        <appender-ref ref="DailyRollingFileAppender" />
+    </root>
+</log4j:configuration>
