@@ -1,3 +1,5 @@
+package com.yungehuo.page;
+
 import com.yungehuo.common.Log;
 import org.testng.annotations.Test;
 

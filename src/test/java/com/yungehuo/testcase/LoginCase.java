@@ -1,29 +1,36 @@
 package com.yungehuo.testcase;
 
-import com.yungehuo.common.Appilication;
+import com.yungehuo.common.Application;
 import com.yungehuo.common.Log;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import com.yungehuo.page.HomePage;
+import com.yungehuo.page.LoginPage;
+import org.testng.Assert;
+import org.testng.annotations.*;
 
 public class LoginCase  {
 
-
+    LoginPage loginPage;
+    HomePage homePage;
     @BeforeTest
     public void  open(){
         Log.info("--------BeforeClass---------");
-        Appilication.getInstance().start();
+        Application.getInstance().start();
     }
 
     @BeforeClass
     public void toLogin(){
+
         Log.info("--------BeforeTest---------");
-        Appilication.getInstance().toLogin();
+        loginPage=Application.getInstance().toLogin();
     }
     @Test
     public void login(){
+        homePage=loginPage.Login();
 
+        String loginInfo=homePage.getLoginInfo();
+
+        Assert.assertNotNull(loginInfo);
+        Log.info("--------loginInfo---------"+loginInfo);
     }
 
     @AfterClass
@@ -34,7 +41,12 @@ public class LoginCase  {
             e.printStackTrace();
         }
         Log.info("--------quit---------");
-        Appilication.getInstance().quit();
+        Application.getInstance().quit();
+    }
+
+    @AfterTest
+    public void afterTest(){
+        Log.info("--------afterTest---------");
     }
 
 }

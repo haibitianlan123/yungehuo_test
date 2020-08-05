@@ -1,0 +1,19 @@
+---
+method:
+  login:
+    - method: "xpath"
+      m_value: "(//*[@class='ivu-tooltip-rel'])[1]/input"
+      action: "sendkey"
+      a_value: "15889319301"
+    - method: "xpath"
+      m_value: "(//*[@class='ivu-tooltip-rel'])[2]/input"
+      action: "sendkey"
+      a_value: "popo1127"
+    - method: "linkText"
+      m_value: "登录"
+      action: "click"
+  sign_out:
+    - method: "id1"
+      m_value: "login1"
+    - method: "id2"
+      m_value: "login2"

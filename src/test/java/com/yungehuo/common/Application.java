@@ -1,27 +1,28 @@
 package com.yungehuo.common;
 
 import com.yungehuo.page.LoginPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
+
 import com.yungehuo.page.BasePage;
 
 
-public class Appilication extends BasePage {
+public class Application extends BasePage {
 
-    private Appilication(){
+    private Application(){
 
     }
 
     private static class AppilicationHolder{
-        private static Appilication appilication=new Appilication();
+        private static Application application =new Application();
     }
 
-    public static Appilication getInstance(){
-        return AppilicationHolder.appilication;
+    public static Application getInstance(){
+        return AppilicationHolder.application;
     }
 
     public void start(){
@@ -70,6 +71,7 @@ public class Appilication extends BasePage {
             Log.info("-----------打开默认浏览器Chrome---------");
         }
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("http://test-pro.yungehuo.com/");
         return driver;
     }
@@ -77,7 +79,8 @@ public class Appilication extends BasePage {
 
     public LoginPage toLogin(){
         Log.info("-----------toLogin----start-----");
-        driver.findElement(By.linkText("企业用户登录")).click();
+        parseSteps("toLogin");
+
         Log.info("-----------toLogin------end---");
         return new LoginPage();
     }

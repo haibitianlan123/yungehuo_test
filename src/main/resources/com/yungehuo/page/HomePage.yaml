@@ -1,0 +1,7 @@
+---
+method:
+  getLoginInfo:
+    - method: "xpath"
+      m_value: "//div[@class='login-info']/div[@class='ivu-tooltip']/div[@class='ivu-tooltip-rel']/span"
+      action: "getText"
+      dump: "loginInfo"

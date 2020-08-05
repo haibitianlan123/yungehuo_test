@@ -1,0 +1,6 @@
+---
+method:
+  toLogin:
+    - method: "linkText"
+      m_value: "企业用户登录"
+      action: "click"
